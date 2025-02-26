@@ -1,0 +1,81 @@
+Here is the **documentation** for your C++ program that merges two sorted arrays into a single sorted array.  
+
+---
+
+# **Documentation for Merging Two Sorted Arrays in C++**
+
+## **1. Overview**  
+This program merges two **sorted** arrays (`A` and `B`) into a third array (`C`), ensuring that the merged array remains **sorted in ascending order**. It uses a **two-pointer approach** for efficient merging.
+
+## **2. Features**  
+- **User Input:** Takes two arrays as input, both sorted in ascending order.  
+- **Merging Functionality:** Merges the two arrays efficiently using a two-pointer approach.  
+- **Dynamic Memory Allocation:** Uses `new` and `delete[]` to handle arrays dynamically.  
+- **Output:** Displays the merged sorted array.  
+
+---
+
+## **3. Code Explanation**  
+
+### **3.1 Function: `mergeSortedArrays()`**  
+This function takes two sorted arrays (`A` and `B`) and merges them into a third array (`C`) while maintaining the sorted order.  
+
+### **Parameters:**  
+- `A[]` → First sorted array  
+- `sizeA` → Size of array `A`  
+- `B[]` → Second sorted array  
+- `sizeB` → Size of array `B`  
+- `C[]` → Output array where merged elements are stored  
+
+### **Algorithm (Two-Pointer Approach)**  
+1. Compare elements from `A` and `B` and insert the smaller one into `C`.  
+2. If one array is exhausted, copy the remaining elements from the other array into `C`.  
+
+---
+
+### **3.2 Function: `main()`**  
+This function handles **user input, memory allocation, function calls, and output display**.
+
+#### **Steps:**
+1. **Read input for array sizes.**  
+2. **Dynamically allocate memory** for arrays `A`, `B`, and `C`.  
+3. **Take input for arrays `A` and `B`.**  
+4. **Call `mergeSortedArrays()`** to merge them into `C`.  
+5. **Print the merged array `C`.**  
+6. **Free dynamically allocated memory** using `delete[]`.  
+
+---
+
+## **4. Example Execution**
+### **Input:**  
+```
+Enter the size of array A: 3  
+Enter elements of array A (sorted in ascending order): 1 5 8  
+Enter the size of array B: 4  
+Enter elements of array B (sorted in ascending order): 2 3 6 10  
+```
+### **Processing:**  
+- **Merge `[1, 5, 8]` and `[2, 3, 6, 10]`**  
+- Resulting merged array: `[1, 2, 3, 5, 6, 8, 10]`  
+
+### **Output:**  
+```
+Merged Sorted Array: 1 2 3 5 6 8 10  
+```
+
+---
+
+## **5. Complexity Analysis**  
+- **Time Complexity:** `O(N + M)`, where `N` is the size of `A` and `M` is the size of `B`.  
+- **Space Complexity:** `O(N + M)`, since a new array `C` of size `(N + M)` is created.
+
+---
+
+## **6. Key Takeaways**
+✅ Uses an **efficient** `O(N + M)` merging algorithm.  
+✅ **Dynamically allocated arrays** prevent stack overflow for large inputs.  
+✅ Ensures **sorted merging** without using built-in sort functions.  
+
+---
+
+This documentation provides **clear insights** into the program, making it easy to **understand, maintain, and modify**. 🚀
