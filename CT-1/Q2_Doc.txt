@@ -1,0 +1,165 @@
+### **Documentation and Explanation for the Code:**
+
+---
+
+## **📌 Documentation**
+
+### **Function: `mergeSortedArrays`**
+**Description:**  
+This function merges two sorted arrays **A** and **B** into a third array **C** while maintaining the sorted order.
+
+**Parameters:**
+- `int A[]` → First sorted array.  
+- `int sizeA` → Number of elements in array A.  
+- `int B[]` → Second sorted array.  
+- `int sizeB` → Number of elements in array B.  
+- `int C[]` → Merged sorted array (size = `sizeA + sizeB`).
+
+**Returns:**  
+- This function does not return anything; it modifies array **C** in place.
+
+---
+
+### **Function: `main`**
+**Description:**  
+- Declares two sorted arrays **A** and **B**.
+- Calculates their sizes.
+- Dynamically allocates memory for the merged array **C**.
+- Calls `mergeSortedArrays` to merge **A** and **B**.
+- Prints the merged array **C**.
+- Frees dynamically allocated memory.
+
+---
+
+## **📌 Explanation of the Code**
+### **1️⃣ Merging Two Sorted Arrays**
+The merging process follows a **two-pointer technique**:
+- Start at the **first element** of both arrays.
+- Compare the elements of **A** and **B**:
+  - Insert the **smaller element** into **C**.
+  - Move the pointer forward in the corresponding array.
+- Continue until one of the arrays is fully traversed.
+- Copy the **remaining elements** from the non-empty array into **C**.
+
+---
+
+### **2️⃣ Memory Allocation**
+- The merged array **C** is dynamically allocated using `new int[sizeA + sizeB]`, ensuring flexibility for varying input sizes.
+- After use, the memory is released using `delete[] C` to prevent memory leaks.
+
+---
+
+### **3️⃣ Code Walkthrough**
+#### **Step 1: Initialize arrays**
+```cpp
+int A[] = {2, 3, 5, 8, 10, 12};
+int B[] = {1, 5, 7, 9, 13};
+int sizeA = sizeof(A) / sizeof(A[0]);
+int sizeB = sizeof(B) / sizeof(B[0]);
+int* C = new int[sizeA + sizeB];  // Dynamically allocate memory for C
+```
+- Define two sorted arrays **A** and **B**.
+- Compute their sizes using `sizeof(A) / sizeof(A[0])`.
+- Allocate memory for **C** of size `sizeA + sizeB`.
+
+---
+
+#### **Step 2: Merging process**
+```cpp
+while (i < sizeA && j < sizeB) {
+    if (A[i] < B[j]) {
+        C[k++] = A[i++];
+    } else {
+        C[k++] = B[j++];
+    }
+}
+```
+- Compare `A[i]` and `B[j]`:
+  - If `A[i]` is smaller, add it to `C[k]` and move `i` forward.
+  - Otherwise, add `B[j]` to `C[k]` and move `j` forward.
+
+---
+
+#### **Step 3: Copy remaining elements (if any)**
+```cpp
+while (i < sizeA) {
+    C[k++] = A[i++];
+}
+
+while (j < sizeB) {
+    C[k++] = B[j++];
+}
+```
+- If **A** has leftover elements, copy them to **C**.
+- If **B** has leftover elements, copy them to **C**.
+
+---
+
+#### **Step 4: Print the merged array**
+```cpp
+std::cout << "Merged Sorted Array: ";
+for (int i = 0; i < sizeA + sizeB; i++) {
+    std::cout << C[i] << " ";
+}
+std::cout << std::endl;
+```
+- Print each element of **C** to display the final merged sorted array.
+
+---
+
+#### **Step 5: Free dynamically allocated memory**
+```cpp
+delete[] C;
+```
+- Prevents memory leaks by deallocating **C**.
+
+---
+
+## **📌 Output of the Program**
+**Expected output:**
+```
+Merged Sorted Array: 1 2 3 5 5 7 8 9 10 12 13
+```
+
+---
+
+## **📌 Complexity Analysis**
+- **Time Complexity:** `O(N + M)`, since we traverse both arrays once.  
+- **Space Complexity:** `O(N + M)`, as we store the merged array **C** separately.
+
+---
+
+## **📌 Why is `mergeSortedArrays` Efficient?**
+✅ **Two-pointer technique** minimizes unnecessary comparisons.  
+✅ **No additional sorting required**, keeping the time complexity at `O(N + M)`.  
+✅ **Efficient memory management** by using dynamic allocation.
+
+---
+
+### **📌 Alternative Approach: Using `std::merge()`**
+If using **C++ STL**, we can simplify the merging process:
+```cpp
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    int A[] = {2, 3, 5, 8, 10, 12};
+    int B[] = {1, 5, 7, 9, 13};
+    int C[11];
+
+    std::merge(A, A + 6, B, B + 5, C);
+
+    for (int num : C) std::cout << num << " ";
+    return 0;
+}
+```
+This is **simpler** but uses a built-in function, which the problem **does not allow**.
+
+---
+
+## **📌 Final Thoughts**
+✔ **Manually implemented merge function** is **efficient and meets the problem constraints**.  
+✔ **Handles any size of sorted arrays**.  
+✔ **Prevents memory leaks** by using `delete[]`.  
+
+Let me know if you need further clarifications! 😊
