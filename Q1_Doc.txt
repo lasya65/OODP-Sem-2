@@ -1,0 +1,136 @@
+### **📌 Documentation and Explanation for the Code**
+
+---
+
+## **📌 Documentation**
+
+### **Function: `calculateInterest`**
+**Description:**  
+This function calculates the interest for a given loan amount based on the tenure and applicable interest rate.
+
+**Parameters:**
+- `double amount` → The principal loan amount.  
+- `int tenure` → The loan tenure in years.
+
+**Returns:**  
+- `double` → The calculated interest, formatted to **two decimal places** in the output.
+
+**Logic:**
+- The interest rate is determined based on tenure:
+  - **1-5 years** → **7%**
+  - **6-10 years** → **8.5%**
+  - **More than 10 years** → **10%**
+- Interest is calculated using the formula:  
+  \[
+  \text{Interest} = \frac{\text{amount} \times \text{rate} \times \text{tenure}}{100}
+  \]
+- `static_cast<double>(tenure)` ensures **implicit conversion** for precision.
+
+---
+
+### **Function: `main`**
+**Description:**  
+- Takes **user input** for loan amount and tenure.
+- Calls `calculateInterest` to compute interest.
+- Displays **final interest rounded to two decimal places**.
+
+---
+
+## **📌 Explanation of the Code**
+
+### **1️⃣ Determine Interest Rate Based on Tenure**
+```cpp
+if (tenure <= 5) {
+    rate = 7.0;
+} else if (tenure <= 10) {
+    rate = 8.5;
+} else {
+    rate = 10.0;
+}
+```
+- If **tenure is 5 years or less**, rate is **7%**.
+- If **tenure is between 6-10 years**, rate is **8.5%**.
+- If **tenure is more than 10 years**, rate is **10%**.
+
+---
+
+### **2️⃣ Interest Calculation Using `static_cast<double>`**
+```cpp
+double interest = (amount * rate * static_cast<double>(tenure)) / 100.0;
+```
+- Ensures **accurate precision** in calculations.
+
+---
+
+### **3️⃣ User Input Handling**
+```cpp
+std::cout << "Enter loan amount: ";
+std::cin >> loanAmount;
+std::cout << "Enter loan tenure (years): ";
+std::cin >> tenure;
+```
+- Accepts **loan amount** and **tenure** from the user.
+
+---
+
+### **4️⃣ Displaying Output with Two Decimal Precision**
+```cpp
+std::cout << "Final Interest: " << std::fixed << std::setprecision(2) << interest << std::endl;
+```
+- `std::fixed` ensures **fixed-point notation**.
+- `std::setprecision(2)` ensures **two decimal places**.
+
+---
+
+## **📌 Sample Input and Output**
+### **Input:**
+```
+Enter loan amount: 50000
+Enter loan tenure (years): 6
+```
+### **Processing:**
+- Tenure **6 years** falls in the **8.5% category**.
+- Interest Calculation:
+  \[
+  \frac{50000 \times 8.5 \times 6}{100} = 25500.00
+  \]
+### **Output:**
+```
+Final Interest: 25500.00
+```
+
+---
+
+## **📌 Complexity Analysis**
+- **Time Complexity:** `O(1)`, as calculations are performed in **constant time**.
+- **Space Complexity:** `O(1)`, as no extra memory is used.
+
+---
+
+## **📌 Alternative Approach: Using a `switch` Statement**
+Instead of multiple `if-else` statements, we can use a **switch**:
+```cpp
+double getRate(int tenure) {
+    switch (tenure) {
+        case 1: case 2: case 3: case 4: case 5:
+            return 7.0;
+        case 6: case 7: case 8: case 9: case 10:
+            return 8.5;
+        default:
+            return 10.0;
+    }
+}
+```
+Then, use:
+```cpp
+double rate = getRate(tenure);
+```
+This improves **readability** but does not reduce complexity.
+
+---
+
+## **📌 Final Thoughts**
+✔ **Accurate precision** with `static_cast<double>`.  
+✔ **Formatted output** with `std::setprecision(2)`.  
+✔ **Efficient time complexity `O(1)`.**  
+✔ **Easy to read and modify**.
